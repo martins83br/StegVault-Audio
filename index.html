@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>StegVault Audio | Secure Acoustic Messaging</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script type="module" src="./js/app.js"></script>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div class="brand">STEGVAULT <span>AUDIO</span></div>
+      <p>Secure Acoustic Message Encoding & Decoding</p>
+      <div class="status">LOCAL PROCESSING · NO CLOUD UPLOAD</div>
+    </header>
+
+    <section class="panel">
+      <nav class="tabs" aria-label="Operations">
+        <button id="encodeTab" class="active" type="button">
+          Encrypt & Encode
+        </button>
+        <button id="decodeTab" type="button">
+          Decode & Decrypt
+        </button>
+      </nav>
+
+      <div id="encodePanel">
+        <h2>Create an Audio Message</h2>
+        <p>Convert your message into a secure audio file.</p>
+
+        <label for="message">Secret Message</label>
+        <textarea id="message" rows="5"
+          placeholder="Enter your message..."></textarea>
+
+        <label class="check">
+          <input id="useEncryption" type="checkbox" checked>
+          Enable AES-256-GCM Encryption
+        </label>
+
+        <div id="encryptPasswordGroup">
+          <label for="encryptPassword">Encryption Password</label>
+          <input id="encryptPassword" type="password"
+            autocomplete="new-password"
+            placeholder="Enter a strong password">
+        </div>
+
+        <button id="generateBtn" class="primary" type="button">
+          Generate Audio
+        </button>
+
+        <div id="audioResult" class="result" hidden>
+          <h3>Encoded Audio</h3>
+          <audio id="audioPlayer" controls></audio>
+          <a id="downloadLink" class="download" download="stegvault.wav">
+            Download WAV
+          </a>
+        </div>
+      </div>
+
+      <div id="decodePanel" hidden>
+        <h2>Recover an Audio Message</h2>
+        <p>Upload a StegVault WAV file to recover its contents.</p>
+
+        <label for="audioFile">Encoded WAV File</label>
+        <input id="audioFile" type="file" accept=".wav,audio/wav">
+
+        <label for="decryptPassword">Decryption Password</label>
+        <input id="decryptPassword" type="password"
+          autocomplete="off"
+          placeholder="Required for encrypted messages">
+
+        <button id="decodeBtn" class="primary" type="button">
+          Decode Audio
+        </button>
+
+        <div id="decodedResult" class="result" hidden>
+          <h3>Recovered Message</h3>
+          <textarea id="recoveredMessage" rows="5" readonly></textarea>
+          <button id="copyBtn" type="button">Copy Message</button>
+        </div>
+      </div>
+
+      <p id="feedback" role="status" aria-live="polite"></p>
+    </section>
+
+    <footer>
+      StegVault Audio · AES-256-GCM · Binary FSK · Open Source
+    </footer>
+  </main>
+</body>
+</html>
